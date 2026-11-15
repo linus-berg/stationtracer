@@ -1,13 +1,106 @@
+@use '@blueprintjs/colors/lib/scss/colors' as bp;
 // using Node.js-style package resolution in a CSS file:
-@import "normalize.css";
-@import "@blueprintjs/core/lib/css/blueprint.css";
+@import 'normalize.css';
+@import '@blueprintjs/core/lib/css/blueprint.css';
 // include blueprint-icons.css for icon font support
-@import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 
-body {
-  background-color: #252a31;
+// Blueprint's dark palette. Colour is reserved for meaning: lamplight for
+// "act now / late / stale", signal for cancellations, fjord for precipitation,
+// moss for vegetarian. Everything else is ink on slate.
+:root {
+  --canvas: #{bp.$dark-gray1};
+  --board: #{bp.$dark-gray2};
+  --raised: #{bp.$dark-gray3};
+  --day-band: #{bp.$dark-gray2};
+  --hairline: #{bp.$dark-gray4};
+  --ink: #{bp.$light-gray5};
+  --ink-2: #{bp.$gray4};
+  --ink-3: #{bp.$gray3};
+  --plate: #{bp.$light-gray4};
+  --plate-ink: #{bp.$dark-gray1};
+  --lamplight: #{bp.$orange5};
+  --signal: #{bp.$red5};
+  --fjord: #{bp.$blue4};
+  --moss: #{bp.$green5};
+
+  color-scheme: dark;
 }
 
-.card-list {
+// Everything is sized in rem, and rem tracks the viewport: 18px on a 1080p
+// screen, 36px on 4K, so the layout reads the same from across the room.
+html {
+  font-size: min(1.6667vh, 0.9375vw);
+}
+
+html,
+body,
+#root {
   height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: 'Atkinson Hyperlegible Next Variable', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.cursor-hidden,
+body.cursor-hidden * {
+  cursor: none !important;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1.75rem 2rem;
+
+  &__board {
+    min-height: 0;
+  }
+
+  &__side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    min-height: 0;
+    padding-top: 0.5rem;
+  }
+
+  &__weather,
+  &__lunch {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  &__weather {
+    flex: none;
+  }
+
+  &__lunch {
+    flex: 1 1 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+  }
+}
+
+// Portrait screens: board on top, the rest below.
+@media (orientation: portrait) {
+  html {
+    font-size: min(1vh, 1.7vw);
+  }
+
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
 }

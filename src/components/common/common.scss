@@ -1,0 +1,48 @@
+.panel-message {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+
+  // Blueprint fills icons with currentcolor, so icons are coloured via `color`.
+  &__icon {
+    color: var(--ink-3);
+
+    svg {
+      width: 2.67rem;
+      height: 2.67rem;
+    }
+  }
+
+  &__title {
+    margin: 0.5rem 0 0;
+    font-size: 1.33rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  &__description {
+    margin: 0;
+    max-width: 32em;
+    font-size: 1rem;
+    color: var(--ink-3);
+  }
+}
+
+.freshness {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--lamplight);
+
+  &__icon svg {
+    width: 1em;
+    height: 1em;
+  }
+}

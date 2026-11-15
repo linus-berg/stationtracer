@@ -1,13 +1,210 @@
 .weather {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  gap: 1rem;
+  min-height: 0;
   height: 100%;
+
+  &__now {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon {
+    flex: none;
+    width: 6rem;
+    height: 6rem;
+  }
+
+  // The panel's one hero figure: proportional digits, same face as everything else.
+  &__temp {
+    flex: none;
+    font-size: 5.33rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  &__degree {
+    font-size: 0.6em;
+    font-weight: 400;
+    vertical-align: 0.55em;
+    color: var(--ink-2);
+  }
+
+  &__details {
+    min-width: 0;
+    padding-left: 0.75rem;
+    font-size: 1.17rem;
+    line-height: 1.35;
+    color: var(--ink-2);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__condition {
+    font-size: 1.67rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  &__feels {
+    font-weight: 400;
+    color: var(--ink-2);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  &__days {
+    display: flex;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__day {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      'name name'
+      'icon high'
+      'icon low';
+    column-gap: 0.4rem;
+    align-items: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__day-name {
+    grid-area: name;
+    font-size: 1.17rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  &__day-icon {
+    grid-area: icon;
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  &__day-high {
+    grid-area: high;
+    font-size: 1.33rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  &__day-low {
+    grid-area: low;
+    font-size: 1.17rem;
+    line-height: 1.1;
+    color: var(--ink-3);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    font-size: 1rem;
+    text-align: right;
+    color: var(--ink-2);
+  }
+
+  &__source {
+    color: var(--ink-3);
+  }
 }
 
-.weather-card {
-  display: grid;
-  grid-template-columns: 40% 30% 30%;
-  width: 100%;
-  height: 100%;
+.forecast-chart {
+  flex: none;
+  height: 15rem;
+
+  svg {
+    display: block;
+    overflow: visible;
+  }
+
+  &__day {
+    fill: var(--day-band);
+  }
+
+  // Strokes scale with rem so the chart keeps its weight on 4K screens.
+  &__line {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 0.14rem;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  &__dot {
+    fill: var(--ink);
+    stroke: var(--canvas);
+    stroke-width: 0.11rem;
+  }
+
+  &__high,
+  &__low {
+    font-size: 1.33rem;
+    font-weight: 700;
+  }
+
+  &__high {
+    fill: var(--ink);
+  }
+
+  &__low {
+    fill: var(--ink-2);
+  }
+
+  &__freezing {
+    line {
+      stroke: var(--ink-3);
+      stroke-width: max(1px, 0.06rem);
+      opacity: 0.6;
+    }
+
+    text {
+      font-size: 1rem;
+      fill: var(--ink-3);
+    }
+  }
+
+  &__baseline {
+    stroke: var(--hairline);
+    stroke-width: max(1px, 0.06rem);
+  }
+
+  &__bar {
+    fill: var(--fjord);
+  }
+
+  &__peak {
+    font-size: 1rem;
+    fill: var(--ink-2);
+  }
+
+  &__tick {
+    font-size: 1rem;
+    fill: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+
+    &--day {
+      font-weight: 700;
+      fill: var(--ink-2);
+    }
+  }
 }

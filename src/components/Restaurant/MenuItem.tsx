@@ -1,17 +1,13 @@
-import {Icon, IconName, Intent} from "@blueprintjs/core";
-import {Dish} from "../../types/RestaurantMenu.ts";
+import type { Dish } from '../../types/RestaurantMenu';
+import { Leaf } from './Leaf';
+
 interface Props {
-  Dish: Dish;
+  dish: Dish;
 }
-export const MenuItem = (props: Props) => {
-  const icon :IconName= props.Dish.type == "vegetarian" ? "tree" : "bank-account";
-  const intent: Intent = props.Dish.type == "vegetarian" ? "success" : "danger";
-  return (
-    <div>
-      <div className="menu-item">
-        <Icon icon={icon} intent={intent} />
-        {props.Dish.dish}
-      </div>
-    </div>
-  );
-};
+
+export const MenuItem = ({ dish }: Props) => (
+  <li className="dish">
+    <span className="dish__marker">{dish.type === 'vegetarian' && <Leaf label="Vegetarian" />}</span>
+    <span className="dish__name">{dish.dish.trim()}</span>
+  </li>
+);

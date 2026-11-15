@@ -1,43 +1,35 @@
-import styled from 'styled-components';
-import './App.scss'
-import {Departures} from "./components/Departures";
-import {Weather} from "./components/Weather";
-import {Restaurant} from "./components/Restaurant";
-import {Clock} from "./components/Clock";
-
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 50% 50%;
-  width: 100%;
-  height: 100vh;
-`;
-
-const Div = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-`
+import './App.scss';
+import { Clock } from './components/Clock';
+import { PanelBoundary } from './components/common/PanelBoundary';
+import { Departures } from './components/Departures';
+import { Restaurant } from './components/Restaurant';
+import { Weather } from './components/Weather';
+import { useKiosk } from './hooks/useKiosk';
 
 function App() {
-
+  useKiosk();
   return (
-    <Grid>
-      <Div>
-        <Departures />
-      </Div>
-      <Div>
-        <Weather />
-      </Div>
-      <Div>
-        <Restaurant />
-      </Div>
-      <Div>
+    <main className="app">
+      <div className="app__board">
+        <PanelBoundary name="Departures">
+          <Departures />
+        </PanelBoundary>
+      </div>
+      <div className="app__side">
         <Clock />
-      </Div>
-    </Grid>
-  )
+        <div className="app__weather">
+          <PanelBoundary name="Weather">
+            <Weather />
+          </PanelBoundary>
+        </div>
+        <div className="app__lunch">
+          <PanelBoundary name="Lunch">
+            <Restaurant />
+          </PanelBoundary>
+        </div>
+      </div>
+    </main>
+  );
 }
 
-export default App
+export default App;

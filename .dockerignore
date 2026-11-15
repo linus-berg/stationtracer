@@ -3,3 +3,6 @@ build
 .dockerignore
 Dockerfile
 Dockerfile.prod
+public/data/*.json
+scripts/*.json
+dist

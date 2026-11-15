@@ -1,13 +1,291 @@
-.departures {
+// The departure board: the one raised surface on screen, styled like station signage.
+.board {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-height: 0;
   height: 100%;
+  padding: 1.75rem 2rem 1.25rem;
+  background: var(--board);
+  border-radius: 0.75rem;
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  &__columns {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink-3);
+  }
+
+  &__column-stop {
+    text-align: center;
+  }
+
+  &__column-time {
+    text-align: right;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  &__rows {
+    display: grid;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 }
 
-.departure-card {
+.departure-grid {
   display: grid;
-  grid-template-columns: 10% 30% 20% 20% 20%;
-  width: 100%;
-  height: 100%;
+  grid-template-columns: 6rem minmax(0, 1fr) 4rem 8.5rem;
+  column-gap: 1.25rem;
+  align-items: center;
+}
+
+.departure {
+  min-height: 0;
+  border-bottom: 1px solid var(--hairline);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &__line {
+    justify-self: start;
+    min-width: 4.6rem;
+    padding: 0.3rem 0.5rem 0.25rem;
+    border-radius: 0.4rem;
+    background: var(--plate);
+    color: var(--plate-ink);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  &__destination {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  &__destination-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // Blueprint fills icons with currentcolor, so icons are coloured via `color`.
+  &__alert {
+    flex: none;
+    color: var(--lamplight);
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__notes {
+    display: flex;
+    gap: 0.9rem;
+    overflow: hidden;
+    font-size: 1.17rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--ink-2);
+  }
+
+  &__stop {
+    justify-self: center;
+  }
+
+  &__time {
+    font-size: 2.67rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  &__unit {
+    font-size: 1.33rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  // A bus leaving right now is the most actionable thing on the screen,
+  // so it gets the screen's only ambient motion.
+  &--now &__time {
+    color: var(--lamplight);
+    animation: departure-now 2.4s ease-in-out infinite;
+  }
+
+  &--cancelled {
+    .departure__line {
+      background: var(--hairline);
+      color: var(--ink-2);
+    }
+
+    .departure__destination-text {
+      color: var(--ink-3);
+      text-decoration: line-through;
+      text-decoration-thickness: 0.08em;
+    }
+
+    .departure__time {
+      font-size: 2rem;
+      color: var(--ink-3);
+    }
+  }
+}
+
+@keyframes departure-now {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .departure--now .departure__time {
+    animation: none;
+  }
+}
+
+.note {
+  &--late {
+    font-weight: 700;
+    color: var(--lamplight);
+  }
+
+  &--cancelled {
+    font-weight: 700;
+    color: var(--signal);
+  }
+}
+
+// Bay letter, framed like the "Läge" signs at the terminal.
+.stop-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--ink-3);
+  border-radius: 0.35rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.disruptions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--raised);
+
+  &__icon {
+    flex: none;
+    padding-top: 0.15rem;
+    color: var(--lamplight);
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-width: 0;
+    animation: disruption-in 0.6s ease-out;
+  }
+
+  &__lines {
+    display: flex;
+    flex: none;
+    gap: 0.35rem;
+  }
+
+  &__message {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 1.33rem;
+    line-height: 1.35;
+    color: var(--ink);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  &__count {
+    flex: none;
+    padding-top: 0.2rem;
+    font-size: 1rem;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.mini-plate {
+  padding: 0.2rem 0.4rem 0.15rem;
+  border-radius: 0.3rem;
+  background: var(--plate);
+  color: var(--plate-ink);
+  font-size: 1.17rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+@keyframes disruption-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disruptions__body {
+    animation: none;
+  }
 }

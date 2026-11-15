@@ -1,20 +1,24 @@
-import {Card, H4} from "@blueprintjs/core";
-import {Dish} from "../../types/RestaurantMenu.ts";
-import {map} from 'lodash';
-import {MenuItem} from "./MenuItem.tsx";
+import type { Dish } from '../../types/RestaurantMenu';
+import { MenuItem } from './MenuItem';
+
 interface Props {
-  Day: string;
-  Dishes: Dish[];
+  /** Omitted for the featured day, whose name is in the panel title. */
+  day?: string;
+  dishes: Dish[];
+  featured?: boolean;
 }
-export const DailyMenu = (props: Props) => {
-  return (<Card>
-    <div className="daily-menu-card">
-      <div>
-        <H4>{props.Day}</H4>
-      </div>
-      <div className="dishes">
-        {map(props.Dishes, (dish) => <MenuItem key={dish.index} Dish={dish} />)}
-      </div>
-    </div>
-  </Card>);
-};
+
+export const DailyMenu = ({ day, dishes, featured = false }: Props) => (
+  <div className={featured ? 'daily-menu daily-menu--featured' : 'daily-menu'}>
+    {day && <h3 className="daily-menu__day">{day}</h3>}
+    {dishes.length > 0 ? (
+      <ul className="daily-menu__dishes">
+        {dishes.map((dish) => (
+          <MenuItem key={`${dish.index}-${dish.dish}`} dish={dish} />
+        ))}
+      </ul>
+    ) : (
+      <p className="daily-menu__empty">No lunch served</p>
+    )}
+  </div>
+);

@@ -6,6 +6,10 @@ export interface RestaurantMenu {
   friday: Dish[];
 }
 
+export type Weekday = keyof RestaurantMenu;
+
+export const WEEKDAYS: Weekday[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+
 export interface Dish {
   index: number;
   dish: string;
