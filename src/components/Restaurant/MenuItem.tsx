@@ -1,13 +1,15 @@
 import type { Dish } from '../../types/RestaurantMenu';
-import { Leaf } from './Leaf';
+import { DishIcon } from './DishIcon';
 
 interface Props {
   dish: Dish;
 }
 
 export const MenuItem = ({ dish }: Props) => (
-  <li className="dish">
-    <span className="dish__marker">{dish.type === 'vegetarian' && <Leaf label="Vegetarian" />}</span>
+  <li className={dish.type === 'closing' ? 'dish dish--closing' : 'dish'} data-type={dish.type}>
+    <span className="dish__marker">
+      <DishIcon type={dish.type} labelled />
+    </span>
     <span className="dish__name">{dish.dish.trim()}</span>
   </li>
 );

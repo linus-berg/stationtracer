@@ -6,8 +6,9 @@
 @import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 // Blueprint's dark palette. Colour is reserved for meaning: lamplight for
-// "act now / late / stale", signal for cancellations, fjord for precipitation,
-// moss for vegetarian. Everything else is ink on slate.
+// "act now / late / stale" (and a restaurant closing early), signal for
+// cancellations, fjord for precipitation, moss for vegetarian. Everything else
+// is ink on slate, apart from the star on the julbord tree.
 :root {
   --canvas: #{bp.$dark-gray1};
   --board: #{bp.$dark-gray2};
@@ -23,6 +24,7 @@
   --signal: #{bp.$red5};
   --fjord: #{bp.$blue4};
   --moss: #{bp.$green5};
+  --star: #{bp.$gold5};
 
   color-scheme: dark;
 }

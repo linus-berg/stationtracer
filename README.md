@@ -18,7 +18,13 @@ They are provided by an external data flow; the app never calls the APIs itself.
 |-------------|--------------------------------------------------------------------------------------------|--------------|
 | `sl.json`   | SL Transport API, `GET /v1/sites/{site}/departures` (see `scripts/get-sl.sh`)              | 3 s          |
 | `smhi.json` | SMHI point forecast, **snow1g** or the legacy **pmp3g** format (see below)                 | 30 s         |
-| `menu.json` | `{ "monday": [{ "index": 1, "dish": "…", "type": "vegetarian" \| "standard" }], … }`        | 60 s         |
+| `menu.json` | `{ "monday": [{ "index": 1, "dish": "…", "type": "standard" }], … }` (types below)          | 60 s         |
+
+Each dish's `type` sets its icon: `standard` (meat, and the default when `type` is
+missing), `vegetarian`, `fish`, `seafood`, `bird` (poultry), `christmas` (julbord),
+or `closing` for a notice that the restaurant closes early or is closed all day.
+Closing notices are shown in orange. Dishes with a type the display doesn't know
+are shown without an icon.
 
 If a file stops changing (judged by the `Last-Modified` header), its panel says
 so: after 5 minutes for departures, or 12 hours for the forecast.

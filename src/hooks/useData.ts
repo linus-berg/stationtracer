@@ -36,6 +36,7 @@ function parseMenu(raw: unknown): RestaurantMenu {
   for (const day of WEEKDAYS) {
     result[day] = [...(Array.isArray(menu[day]) ? menu[day]! : [])]
       .filter((d) => d && typeof d.dish === 'string' && d.dish.trim())
+      .map((d) => ({ ...d, type: d.type ?? 'standard' }))
       .sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
   }
   return result;

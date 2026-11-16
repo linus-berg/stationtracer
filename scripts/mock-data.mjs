@@ -162,21 +162,22 @@ const MENU = {
     { index: 2, dish: 'Halloumibiff med rostad rotselleri och örtyoghurt', type: 'vegetarian' },
   ],
   tuesday: [
-    { index: 1, dish: 'Ugnsbakad torsk med äggsås, dill och pressad potatis', type: 'standard' },
+    { index: 1, dish: 'Ugnsbakad torsk med äggsås, dill och pressad potatis', type: 'fish' },
     { index: 2, dish: 'Linsgryta med kokosmjölk, koriander och basmatiris', type: 'vegetarian' },
   ],
   wednesday: [
-    { index: 1, dish: 'Kycklinggryta med paprika, chorizo och ris', type: 'standard' },
+    { index: 1, dish: 'Kycklinggryta med paprika, chorizo och ris', type: 'bird' },
     { index: 2, dish: 'Pasta med svamp, spenat och parmesan', type: 'vegetarian' },
-    { index: 3, dish: 'Ärtsoppa med senap och pannkakor', type: 'standard' },
+    { index: 3, dish: 'Räkpasta med citron, dill och chili', type: 'seafood' },
   ],
   thursday: [
     { index: 1, dish: 'Ärtsoppa och pannkakor med sylt och grädde', type: 'standard' },
     { index: 2, dish: 'Vegetarisk ärtsoppa och pannkakor med sylt', type: 'vegetarian' },
   ],
   friday: [
-    { index: 1, dish: 'Fläskfilé med kantarellsås och potatisgratäng', type: 'standard' },
-    { index: 2, dish: 'Grönsaksbiffar med tzatziki och bulgursallad', type: 'vegetarian' },
+    { index: 1, dish: 'Julbord med sill, skinka, köttbullar och Janssons frestelse', type: 'christmas' },
+    { index: 2, dish: 'Vegetariskt julbord', type: 'vegetarian' },
+    { index: 3, dish: 'Restaurangen stänger kl. 13.00', type: 'closing' },
   ],
 };
 
