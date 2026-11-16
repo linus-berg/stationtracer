@@ -50,6 +50,15 @@ const GLYPHS: Record<DishType, ReactNode> = {
       <circle className="dish-icon__hole" cx="18.2" cy="7.4" r=".95" />
     </>
   ),
+  // A bowl with a spoon; steam alone could be any hot dish.
+  soup: (
+    <>
+      <path d="M2 11.4h20c-.2 5-4 8.9-8.9 9.5h-2.2C6 20.3 2.2 16.4 2 11.4Z" />
+      <rect x="8.2" y="20.2" width="7.6" height="2.4" rx=".8" />
+      <path d="M13.9 10.2 20.2 1.8A1 1 0 0 1 21.8 3L15.5 11.4A1 1 0 0 1 13.9 10.2Z" />
+      <path className="dish-icon__line" d="M7 3.2c-1.1 1.2-1.1 2.4 0 3.6s1.1 2.4 0 3.6M11.2 2c-1.1 1.3-1.1 2.6 0 3.9s1.1 2.6 0 3.9" />
+    </>
+  ),
   vegetarian: (
     <>
       <path d="M20 3C10 3 4 8 4 15c0 2 .6 3.6 1.5 5L4 21.5 5.5 23 7 21.4C8.4 22.4 10 23 12 23c7 0 10-7 8-20Z" />

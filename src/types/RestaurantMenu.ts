@@ -15,7 +15,7 @@ export const WEEKDAYS: Weekday[] = ['monday', 'tuesday', 'wednesday', 'thursday'
  * notice that the restaurant closes early or is closed all day, and
  * `christmas` is a julbord.
  */
-export type DishType = 'standard' | 'vegetarian' | 'fish' | 'seafood' | 'bird' | 'closing' | 'christmas';
+export type DishType = 'standard' | 'vegetarian' | 'fish' | 'seafood' | 'bird' | 'soup' | 'closing' | 'christmas';
 
 export interface Dish {
   index: number;

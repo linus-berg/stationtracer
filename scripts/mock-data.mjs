@@ -171,7 +171,7 @@ const MENU = {
     { index: 3, dish: 'Räkpasta med citron, dill och chili', type: 'seafood' },
   ],
   thursday: [
-    { index: 1, dish: 'Ärtsoppa och pannkakor med sylt och grädde', type: 'standard' },
+    { index: 1, dish: 'Ärtsoppa och pannkakor med sylt och grädde', type: 'soup' },
     { index: 2, dish: 'Vegetarisk ärtsoppa och pannkakor med sylt', type: 'vegetarian' },
   ],
   friday: [

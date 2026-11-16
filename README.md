@@ -21,7 +21,7 @@ They are provided by an external data flow; the app never calls the APIs itself.
 | `menu.json` | `{ "monday": [{ "index": 1, "dish": "…", "type": "standard" }], … }` (types below)          | 60 s         |
 
 Each dish's `type` sets its icon: `standard` (meat, and the default when `type` is
-missing), `vegetarian`, `fish`, `seafood`, `bird` (poultry), `christmas` (julbord),
+missing), `vegetarian`, `fish`, `seafood`, `bird` (poultry), `soup`, `christmas` (julbord),
 or `closing` for a notice that the restaurant closes early or is closed all day.
 Closing notices are shown in orange. Dishes with a type the display doesn't know
 are shown without an icon.
